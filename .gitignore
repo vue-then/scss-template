@@ -14,3 +14,4 @@ tmp/
 /config
 .vscode/
 package-lock.json
+./example-git/webpacks/src/vue-notifyjs

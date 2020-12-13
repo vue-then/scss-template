@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- // Include vuejs -->
+    <script type="text/javascript" src="https://unpkg.com/vue@2.4.2/dist/vue.min.js"></script>
+    <!-- // Include vuejs-dialog plugin -->
+    <link href="./vuejs-dialog.min.css" rel="stylesheet">
+    <!-- <link href="https://unpkg.com/vue-notifyjs/themes/default.css" rel="stylesheet"> -->
+    <!-- <link href="https://unpkg.com/vue-notifyjs/themes/material.css" rel="stylesheet"> -->
+    <link href="https://unpkg.com/vue-notifyjs/themes/now-ui.css" rel="stylesheet">
+    <link rel="stylesheet" href="./dialog-login.css">
+    <script type="text/javascript" src="./vuejs-dialog.min.js"></script>
+    <script type="text/javascript" src="./vuejs-dialog-mixin.min.js"></script>
+    <script type="text/javascript" src="./vue-notify.umd.js"></script>
+
+
+    <title>Document</title>
+    <style>
+        .button {
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            -ms-flex-align: center;
+            border: 1px solid #dbdbdb;
+            border-radius: 3px;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            font-size: 1rem;
+            height: 2.25em;
+            line-height: 1.5;
+            position: relative;
+            vertical-align: top;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-color: #fff;
+            color: #363636;
+            cursor: pointer;
+            -ms-flex-pack: center;
+            -webkit-box-pack: center;
+            justify-content: center;
+            padding: calc(.375em - 1px) 0.75em;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        main {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 10px;
+        }
+
+        .vue-notification {
+            padding: 10px;
+            margin: 15px;
+
+            font-size: 18px;
+            font-family: "Noto Sans", sans-serif;
+
+            color: #ffffff;
+            background: #44A4FC;
+            border-left: 5px solid #187FE7;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        .has--list-items li:not(:last-child) {
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+    </style>
+    <style>
+       /* .list-leave-active for <2.1.8 */
+        .vue-notifyjs .list-move { 
+            transition: transform 0.3s, opacity 0.4s;
+        }
+        .vue-notifyjs .list-item {
+            display: inline-block;
+            margin-right: 10px;
+        }
+        .vue-notifyjs .list-enter-active {
+            transition: opacity 0.4s;
+        }
+        .vue-notifyjs.list-leave-active {
+            transition: opacity 0.4s;
+        }
+        .vue-notifyjs .list-enter {
+            opacity: 0;
+        }
+        .vue-notifyjs .list-leave-to {
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <notifications></notifications>
+        <main>
+            <div>
+                <button class="btn btn-default btn-block" @click="addNotification('top', 'left')">Top Left</button>
+                <button class="btn btn-default btn-block" @click="addNotification('top', 'center')">Top Center</button>
+                <button class="btn btn-default btn-block" @click="addNotification('top', 'right')">Top Right</button>
+                <button class="btn btn-default btn-block" @click="addNotification('bottom', 'left')">Bottom Left</button>
+                <button class="btn btn-default btn-block" @click="addNotification('bottom', 'center')">Bottom Center</button>
+                <button class="btn btn-default btn-block" @click="addNotification('bottom', 'right')">Bottom Right</button>
+                <button class="btn btn-default btn-block" @click="addNotificationNoTimeout()">No timeout</button>
+                <button class="btn btn-default btn-block" @click="addNotificationNoCloseOnClick()">No close on click</button>
+                <button class="btn btn-default btn-block" @click="addNotificationNoCloseIcon()">No close icon</button>
+                <button class="btn btn-default btn-block" @click="addNotificationWithClickHandler()">With click handler</button>
+                <button class="btn btn-default btn-block" @click="removeNotifications()">Clear all notifications</button>
+            </div>
+            <section>
+                <h2 class="title-case">{{ trans('用法作为一种方法')}}</h2>
+                <hr />
+                <h4>
+                    <button class="button" @click="showAlertDialog()">{{ trans('警报对话框 - 一个按钮')
+                            }}
+                    </button>
+                </h4>
+
+                <h4>
+                    <button class="button" @click="showPromptDialog()">{{ trans('提示 - 收集输入')
+                            }}
+                    </button>
+                </h4>
+
+                <h4>
+                    <button class="button" @click="showHtmlDialog()">{{ trans('HTML对话框 - 风格/格式内容')
+                            }}
+                    </button>
+                </h4>
+
+                <h4>
+                    <button class="button" @click="showBasicDialog()">{{ trans('基本确认 - 立即关闭')
+                            }}
+                    </button>
+                </h4>
+
+                <h4>
+                    <button class="button" @click="showLoadingDialog()">{{ trans('加载对话框 - 与ajax有用')
+                            }}
+                    </button>
+                </h4>
+
+                <h4>
+                    <button class="button" @click="showReversedDialog()">{{ trans('反转对话框 - 开关按钮')
+                            }}
+                    </button>
+                </h4>
+
+                <h4>
+                    <button class="button" @click="showAnimationFadeDialog()">
+                        {{ trans('淡化对话框 - 动画') }}
+                    </button>
+                </h4>
+
+                <h4>
+                    <button class="button" @click="showAnimationBounceDialog()">
+                        {{ trans('反弹对话框 - 动画') }}
+                    </button>
+                </h4>
+                <h4>
+                    <button class="button" @click="showBasicDialogCloseClickOutside()">
+                        {{ trans('单击外部对话框时关闭') }}
+                    </button>
+                </h4>
+            </section>
+
+            <section>
+                <h2 class="title-case">{{ trans('用法作为指令')}}</h2>
+                <hr />
+
+                <h4>
+                    <button class="button" v-confirm="trans('这是一个消息')">
+                        {{ trans('给它一个字符串')
+                            }} v-confirm="'{{ trans('这是一个消息') }}'"
+                    </button>
+                </h4>
+
+                <h4>
+                    <a href="http://example.com" v-confirm="trans('这将带你到 http://example.com. 请谨慎行事')">
+                        {{ trans('转到example.com') }}
+                    </a>
+                </h4>
+
+                <h4>
+                    <button class="button" v-confirm="{
+                        loader: true,
+                        message: trans('此对话框也使用v-confirm指令触发。 它有OK和CANCEL回调'),
+                        ok: clickOkHandler,
+                        cancel: clickCancelHandler}">
+                        {{ trans('给它一个对象') }}
+                    </button>
+                </h4>
+
+                <form @submit.prevent="submitDemo1Form()" style="display: inline-block;">
+                    <fieldset style="padding: 10px;">
+                        <input v-model="forms.demo1.name" type="text" name="name" class="input-elem"
+                            :placeholder="trans('你的名字')" style="margin-bottom: 10px;" />
+
+                        <button class="button" type="reset" v-confirm="trans('重启')">
+                            {{ trans('重启') }}
+                        </button>
+                        <button class="button" type="submit" v-confirm="trans('提交')">
+                            {{ trans('提交') }}
+                        </button>
+                    </fieldset>
+                </form>
+            </section>
+
+            <section>
+                <h2>{{ trans('确认类型')}}</h2>
+                <hr />
+
+                <p>{{ trans('有时，您可能希望通过确保用户真正想要继续进行更严格')}}</p>
+                <p>{{ trans('柔软和硬确认对话框有助于此。')}}</p>
+
+                <h4>
+                    <button class="button" @click="showSoftConfirmDialog()">
+                        {{ trans('软确认 - 需要多次点击') }}
+                    </button>
+                </h4>
+
+                <h4>
+                    <button class="button" @click="showHardConfirmDialog()">
+                        {{ trans('硬确认 - 需要验证文本') }}
+                    </button>
+                </h4>
+            </section>
+
+            <section>
+                <h2>Extending the dialog</h2>
+                <hr />
+
+                <h4>
+                    <button class="button" @click="showDialogWithCustomView()">Custom View/Component</button>
+                </h4>
+                <hr />
+                <!-- 弹出框的自定义方法1 -->
+                <button @click="showDialog">
+                    show dialog
+                </button>
+                <!-- 弹出框的自定义方法1 -->
+                <button @click="showDialogLogin">
+                    show dialog login
+                </button>
+
+                <iframe width="100%" height="600"
+                    src="https://jsfiddle.net/godofbrowser/pktL3mjb/embedded/js,html,css,result/dark/"
+                    allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+            </section>
+        </main>
+    </div>
+
+    <!-- 弹出框的自定义方法1 -->
+    <script id="custom-view-template" type="text/template">
+        <p :class="options.customClass">
+            {{ messageBody }} ----
+        <br/>
+        <ul>
+            <li v-for="(item, index) in items" :key="item.name">
+                <a href="#" @click="handleSelect(index)">
+                {{ item.name }}
+                <span v-if="item.count">({{ item.count }})</span>
+            </a>
+            </li>
+        </ul>
+        <br/>
+        <a href="#" @click="handleDismiss()">cancel</a>
+        <a href="#" @click="handleProceed()">Save</a>
+        </p>
+    </script>
+    <!-- 弹出框的自定义方法1 -->
+    <script id="dialog-login-template" type="text/template">
+        <div :class="options.customClass">
+            <div class="modal-head" @click="handleSelect()">
+                <p>
+                    {{ messageBody }}
+                </p>
+                <span class="popClose" @click="handleDismiss()">
+                    <img src="./cha.png" alt="">
+                </span>
+            </div>
+            <div class="modal-body">
+                <div class="login-box">
+                    <label>
+                        <span>用户名:</span>
+                        <input type="text" id="userNameID" placeholder="请输入用户名" />
+                    </label>
+
+                    <label><span>密&nbsp;&nbsp;码 : </span><input type="password" id="passwordID" placeholder="请输入密码" /></label>
+                    <label class="dis-block">
+                        <span>&nbsp; </span><a href="/forgetPwd.html" class="forgetPass">忘记密码?</a>
+                        <a href="javascript:;" onclick='getPager("-","zhuce");' class="registLink">
+                            免费<div class="registYello">注册账号</div>
+                        </a>
+                    </label>
+                    <div class="thirdlogin">
+                        <div class="thirdTit">第三方登录</div>
+                        <img class="thirdQQ" src="./QQ_ICON.png" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-foot">
+                <a class="enterBtn">登录</a>
+            </div>
+            <div class="clearboth"></div>
+            <!-- <a href="#" @click="handleDismiss()">cancel</a>
+            <a href="#" @click="handleProceed()">Save</a> -->
+        </div>
+    </script>
+    <script src="./demo.js"></script>
+</body>
+
+</html>

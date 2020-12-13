@@ -1,0 +1,156 @@
+.dg-open .login-view .dg-main-content {
+  max-width: 540px;
+  overflow: hidden;
+  padding: 0;
+}
+.dg-open .login-view .dg-main-content .modal-head {
+  height: 50px;
+  padding: 0 20px;
+  line-height: 50px;
+  background: #ba3f47;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.dg-open .login-view .dg-main-content .modal-head p {
+  margin: 0;
+  padding: 0;
+}
+.dg-open .login-view .dg-main-content .modal-head .popClose {
+  cursor: pointer;
+}
+.dg-open .login-view .dg-main-content .modal-head .popClose img {
+  width: 16px;
+  height: 16px;
+}
+.dg-open .login-view .dg-main-content .modal-body {
+  padding: 40px 50px 10px 50px;
+  overflow-y: auto;
+  color: #333;
+}
+.dg-open .login-view .dg-main-content .modal-body .login-box {
+  display: block;
+  padding: 0 25px;
+}
+.dg-open .login-view .dg-main-content .modal-body .login-box .forgetPass {
+  font-size: 14px;
+  color: #fe8c27;
+}
+.dg-open .login-view .dg-main-content .modal-body .login-box .registLink {
+  line-height: 30px;
+  font-size: 14px;
+  text-decoration: none;
+  color: #868686;
+}
+.dg-open .login-view .dg-main-content .modal-body .login-box .registYello {
+  display: inline;
+  text-decoration: underline;
+  color: #fe8c27;
+}
+.dg-open .login-view .dg-main-content .modal-body .login-box .thirdlogin {
+  margin: 0 auto;
+  width: 380px;
+  text-align: center;
+  font-size: 16px;
+  color: #868686;
+}
+.dg-open .login-view .dg-main-content .modal-body .login-box .thirdlogin .thirdTit {
+  position: relative;
+}
+.dg-open .login-view .dg-main-content .modal-body .login-box .thirdlogin .thirdTit::after,
+.dg-open .login-view .dg-main-content .modal-body .login-box .thirdlogin .thirdTit::before {
+  position: absolute;
+  top: 50%;
+  content: '';
+  width: 134px;
+  height: 1px;
+  background-color: #e1e1e1;
+}
+.dg-open .login-view .dg-main-content .modal-body .login-box .thirdlogin .thirdTit::after {
+  left: 0;
+}
+.dg-open .login-view .dg-main-content .modal-body .login-box .thirdlogin .thirdTit::before {
+  right: 0;
+}
+.dg-open .login-view .dg-main-content .modal-body .login-box .thirdlogin .thirdQQ {
+  margin: 24px 0 40px;
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+}
+.dg-open .login-view .dg-main-content .modal-body .login-box label {
+  display: block;
+  margin-bottom: 24px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+.dg-open .login-view .dg-main-content .modal-body .login-box label span {
+  display: inline-block;
+  width: 20%;
+  text-align: right;
+  color: #000;
+  font: 16px/30px Microsoft YaHei;
+  padding-right: 20px;
+  box-sizing: border-box;
+}
+.dg-open .login-view .dg-main-content .modal-body .login-box label input[type="text"],
+.dg-open .login-view .dg-main-content .modal-body .login-box label input[type="password"] {
+  display: inline-block;
+  flex: 1;
+  height: 40px;
+  color: #666;
+  font: 14px/30px Microsoft YaHei;
+  padding: 0 10px;
+  border-radius: 3px;
+  vertical-align: middle;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border-radius: 5px;
+  border: solid 1px #d1d1d1;
+}
+.dg-open .login-view .dg-main-content .modal-body .login-box label input[type="text"]:focus,
+.dg-open .login-view .dg-main-content .modal-body .login-box label input[type="password"]:focus {
+  outline: none;
+}
+.dg-open .login-view .dg-main-content .modal-foot {
+  background: #fff;
+  position: relative;
+}
+.dg-open .login-view .dg-main-content .modal-foot::before {
+  content: "";
+  display: block;
+  left: 0;
+  height: 1px;
+  width: 100%;
+  background: #fff;
+}
+.dg-open .login-view .dg-main-content .modal-foot .cancelBtn,
+.dg-open .login-view .dg-main-content .modal-foot .enterBtn {
+  text-decoration: none;
+  display: block;
+  height: 60px;
+  line-height: 60px;
+  font-size: 18px;
+  width: 100%;
+  text-align: center;
+  overflow: hidden;
+  cursor: pointer;
+}
+.dg-open .login-view .dg-main-content .modal-foot .enterBtn {
+  color: #ba3f47;
+  border-top: 1px solid #e8e8e8;
+}
+.dg-open .dis-block {
+  display: block!important;
+}
+.dg-open .dis-block .registLink {
+  float: right;
+}
+.dg-open .fr {
+  float: right;
+}
+.dg-open .clearboth {
+  clear: both;
+}
