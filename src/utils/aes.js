@@ -1,5 +1,6 @@
 import CryptoJS from "crypto-js";
 
+const sKey = "aaaaaaaaaaaaaaaa"
 export default {
 	//随机生成指定数量的16进制key
 	generatekey(num) {
@@ -15,7 +16,7 @@ export default {
 
 	//加密
 	encrypt(word, keyStr) {
-		keyStr = keyStr ? keyStr : "abcdsxyzhkj12345"; //判断是否存在ksy，不存在就用定义好的key
+		keyStr = keyStr ? keyStr : sKey; //判断是否存在ksy，不存在就用定义好的key
 		var key = CryptoJS.enc.Utf8.parse(keyStr);
 		var srcs = CryptoJS.enc.Utf8.parse(word);
 		var encrypted = CryptoJS.AES.encrypt(srcs, key, {
@@ -26,7 +27,7 @@ export default {
 	},
 	//解密
 	decrypt(word, keyStr) {
-		keyStr = keyStr ? keyStr : "abcdsxyzhkj12345";
+		keyStr = keyStr ? keyStr : sKey;
 		var key = CryptoJS.enc.Utf8.parse(keyStr);
 		var decrypt = CryptoJS.AES.decrypt(word, key, {
 			mode: CryptoJS.mode.ECB,

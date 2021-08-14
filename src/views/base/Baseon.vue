@@ -20,10 +20,12 @@ export default {
         a5: () => import('../base/seconds/a-5.vue'),
         longPress: () => import('../base/seconds/longPress.vue'),
         keyBoard: () => import('../base/seconds/keyBoard'),
+        inputs: () => import('../base/seconds/inputs'),
+        webworker: () => import('../base/seconds/test.worker'),
     },
     data(){
         return{
-            seconds:["a1","a2","a3","a4","a5","longPress","keyBoard"],
+            seconds:["a1","a2","a3","a4","a5","longPress","keyBoard","inputs", "webworker"],
             comName: "a1"
         }
     },

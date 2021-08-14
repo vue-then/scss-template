@@ -19,6 +19,9 @@ Vue.use(KeyBoard);
 import Notify from 'vue-notifyjs'
 Vue.use(Notify)
 
+import VueWorker from "vue-worker";
+Vue.use(VueWorker);
+
 Vue.config.productionTip = false
 
 new Vue({
